@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Icon Array</title>
+
+	<script src="d3.v3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="icon-array.js"></script>
+	
+	<style>
+
+	body{
+		font-family: sans-serif;
+	}
+
+	.key-label{
+		font-size: small;
+	}
+
+	td{
+		vertical-align:middle;
+	}
+
+	.key{
+		display:inline-block;
+	}
+
+	.content{
+		display:inline-block;
+		float:left;
+	}
+	</style>
+
+</head>
+<body>
+<h3>title</h3>
+	
+	<div class="key"></div>
+	<div class="content"></div>
+	<p>description</a></p>
+</body>
+<script>
+	var data = [
+		{
+			sex:'star',
+			pct:45
+		},
+		{
+			sex:'spiral',
+			pct:55
+		}
+	];
+
+	// expand the data into an array of individual items
+	function expand(array, countAccessor, valueAccessor){ 
+		return array.reduce(function(value, d){
+			var l = new Array( countAccessor(d) );
+			for (var i =0; i< l.length; i++){
+				value.push( valueAccessor(d) );
+			}
+			return value;
+		}, []);
+	}
+
+	var dataArray = expand( data, 
+		function countAccessor (d) { return Number(d.pct); },
+		function valueAccessor (d) { return d; } );
+
+	var myArrayLayout = d3.layout.iconArray();
+
+	dataArray = myArrayLayout( d3.shuffle( dataArray ) );
+
+	console.log( dataArray );
+
+	var width = 600, height = 600,
+		margin = {top:20, left:20, bottom:20, right:20},
+		plotWidth = width - (margin.left + margin.right),
+		plotHeight = height - (margin.top + margin.bottom);
+
+	var arrayScale = d3.scale.linear()
+		.domain([ 0, myArrayLayout.maxDimensions( dataArray.length ).max ])
+		.range([ 0, Math.min( plotHeight, plotWidth ) ]);
+	
+	//add the icon array...
+	d3.select('.content')
+		.append('svg').attr({ 
+			width:width+(margin.left+margin.right), 
+			height:height+(margin.top+margin.bottom) })
+		.append('g').attr('transform','translate('+margin.left+','+margin.top+')')
+			.selectAll('circle')
+		.data( dataArray )
+			.enter()
+		.append('g')
+			.attr({
+				transform:function(d){
+					var xPos = arrayScale(d.x),
+						yPos = arrayScale(d.y);
+
+					return 'translate(' + xPos + ',' + yPos + ')';
+				}
+			})
+		.append('circle')
+			.attr({ 
+				r:function(d){ 
+					console.log(d.data.sex);
+					if(d.data.sex == "star"){
+						console.log('small') 
+						return 10; 
+					}
+					return 15; 
+				} 
+			});
+
+
+
+</script>
+</html>
