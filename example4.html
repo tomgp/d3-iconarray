@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>example 4</title>
+
+	<script src="d3.v3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="icon-array.js"></script>
+	
+	<style>
+
+	body{
+		font-family: sans-serif;
+	}
+
+	.key-label{
+		font-size: small;
+	}
+
+	td{
+		vertical-align:middle;
+	}
+
+	.key{
+		display:inline-block;
+	}
+
+	.content{
+		display:inline-block;
+		float:left;
+	}
+	.source{
+		color: #888;
+	}
+	.source a, 
+	.source a:visited{
+		color: #888;
+	}
+	</style>
+</head>
+
+<body>
+<h3>Modal transport share with emoji</h3>
+	<div class="key"></div>
+	<div class="content"></div>
+	<div class="source">source: <a href="https://en.wikipedia.org/wiki/Modal_share">Wikipedia</a> &mdash; 25 September 2015</div>
+	<p></p>
+</body>
+<script type="text/javascript">
+d3.tsv('data/modal-share-data.tsv', function(data){
+	console.log(data);
+});
+
+function toID(s){
+	return s.replace(/\W/g,'-').toLowerCase();
+}
+</script>
+</html>

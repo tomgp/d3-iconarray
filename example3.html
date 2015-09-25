@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Icon Array -example 2</title>
+	<title>Icon Array -example 3</title>
 
 	<script src="d3.v3.js" charset="utf-8"></script>
 	<script type="text/javascript" src="icon-array.js"></script>
@@ -33,50 +33,57 @@
 
 </head>
 <body>
-<h3>How people travel in London</h3>
+<h3>400 pieces of fruit!</h3>
 	<div class="key"></div>
 	<div class="content"></div>
-	<p>Modal transport share. London 2011. <a href="https://en.wikipedia.org/wiki/Modal_share">Source</a></p>
+	<p></p>
 </body>
 <script>
 	var defaultIconSize = 100; //assume the icons are 100 pixel squares
-	var iconFile = {
-		'male':'icons/male.svg',
-		'female':'icons/female.svg',
-		'walking':'icons/pedestrian.svg',
-		'cycling':'icons/bicycle.svg',
-		'public transport':'icons/bus.svg',
-		'private motor vehicle':'icons/car.svg'
-	};
+	var iconFile = 'icons/fruit-emoji.svg';
 
 
-	var modalShareData = [{
-			mode : 'walking',
-			pct : 20
+	var fruitData = [
+		{
+			fruit : 'banana',
+			value : 20
 		},
 		{
-			mode : 'cycling',
-			pct : 2
+			fruit : 'strawberry',
+			value : 32
 		},
 		{
-			mode : 'public transport',
-			pct : 44
+			fruit : 'lemon',
+			value : 44
 		},
 		{
-			mode : 'private motor vehicle',
-			pct : 34
-		},
-	];
-
-	var data = [
-		{
-			mode: 'male',
-			pct: 45
+			fruit : 'orange',
+			value : 34
 		},
 		{
-			mode: 'female',
-			pct: 55
-		}
+			fruit : 'mellon',
+			value : 34
+		},
+		{
+			fruit : 'watermellon',
+			value : 93
+		},
+		{
+			fruit : 'pineapple',
+			value : 15
+		},
+		{
+			fruit : 'mellon',
+			value : 34
+		},
+		{
+			fruit : 'pear',
+			value : 60
+		},
+		{
+			fruit : 'apple',
+			value : 34
+		},
 	];
 
 	// expand the data into an array of individual items
@@ -90,22 +97,22 @@
 		}, []);
 	}
 
-	var dataArray = expand( modalShareData, 
-		function countAccessor (d) { return Number(d.pct); },
+	var dataArray = expand( fruitData, 
+		function countAccessor (d) { return Number(d.value); },
 		function valueAccessor (d) { return d; } );
 
 	var myArrayLayout = d3.layout.iconArray();
 
 	dataArray = myArrayLayout( dataArray ); 
 
-	var width = 600, height = 600,
-		margin = {top:20, left:20, bottom:20, right:20},
+	var width = 900, height = 400,
+		margin = {top:0, left:0, bottom:0, right:0},
 		plotWidth = width - (margin.left + margin.right),
 		plotHeight = height - (margin.top + margin.bottom);
 
 	var arrayScale = d3.scale.linear()
 		.domain([ 0, myArrayLayout.maxDimensions( dataArray.length ).max ])
-		.range([ 0, Math.min( plotHeight, plotWidth ) ]);
+		.range([ 0, plotWidth ]);
 
 	var scaleFactor = arrayScale(0.9) / defaultIconSize;  //0.9 so we get a little bit of extra space around each icon graphic i.e. the icon takes up 90% of the available space in the mosr constrained dimension
 	
@@ -128,8 +135,8 @@
 			})
 		.append('use')
 			.attr('xlink:href',function(d){
-				console.log(d.data.mode);
-				return iconGraphics[d.data.mode]+'#icon';
+				console.log(d.data);
+				return iconFile + '#' + d.data.fruit;
 			})
 			.attr('transform','scale(' + scaleFactor + ')');
 
@@ -138,7 +145,7 @@
 	d3.select('.key')
 		.insert('table').attr('class','key')
 		.selectAll('div.key-element')
-			.data(modalShareData)
+			.data(fruitData)
 		.enter()
 			.append('tr')
 				.attr('class','key-element')
@@ -152,14 +159,14 @@
 							})
 						.append('use')
 							.attr('xlink:href',function(d){
-								return iconGraphics[d.mode]+'#icon';
+								return iconFile + '#' + d.fruit;
 							})
 							.attr('transform','scale(' + scaleFactor + ')');
 
 					row.append('td')
 						.attr('class','key-label')
 						.text(function(d){
-							return d.mode + ' (' + d.pct + '%)';
+							return d.fruit + ' (' + d.value + ')';
 						});
 				});
 

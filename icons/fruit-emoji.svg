@@ -1,0 +1,58 @@
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>fruit-emoji</title>
+        <g id="strawberry" font-size="89.1428571">
+            <text>
+                <tspan x="0" y="89">🍓</tspan>
+            </text>
+        </g>
+        <g id="banana" font-size="88.3809524">
+            <text>
+                <tspan x="0" y="88">🍌</tspan>
+            </text>
+        </g>
+        <g id="lemon" font-size="86.8571429">
+            <text>
+                <tspan x="0" y="87">🍋</tspan>
+            </text>
+        </g>
+        <g id="orange" font-size="84.5714286">
+            <text>
+                <tspan x="0" y="85">🍊</tspan>
+            </text>
+        </g>
+        <g id="pineapple" transform="translate(-5.000000, -14.000000)" font-size="102.095238">
+            <text>
+                <tspan x="0" y="102">🍍</tspan>
+            </text>
+        </g>
+        <g id="apple" font-size="86.8571429">
+            <text>
+                <tspan x="0" y="87">🍎</tspan>
+            </text>
+        </g>
+        <g id="pear" font-size="86.0952381">
+            <text>
+                <tspan x="0" y="86">🍐</tspan>
+            </text>
+        </g>
+        <g id="peach" font-size="85.3333333">
+            <text>
+                <tspan x="0" y="85">🍑</tspan>
+            </text>
+        </g>
+        <g id="cherry" font-size="85.3333333">
+            <text>
+                <tspan x="0" y="85">🍒</tspan>
+            </text>
+        </g>
+        <g id="mellon" transform="translate(-1.000000, 2.000000)" font-size="83.8095238">
+            <text>
+                <tspan x="0" y="84">🍈</tspan>
+            </text>
+        </g>
+        <g id="watermellon" font-size="85.3333333">
+            <text>
+                <tspan x="0" y="85">🍉</tspan>
+            </text>
+        </g>
+</svg>
