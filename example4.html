@@ -34,11 +34,23 @@
 	.source a:visited{
 		color: #888;
 	}
+
+	.city-link{
+		margin-right: 10px;
+		text-decoration: none;
+	}
+
+	.city-link:hover{
+		background-color: #00F;
+		color: #FFF;
+	}
+
 	</style>
 </head>
 
 <body>
 <h3>Modal transport share with emoji</h3>
+	<div class="nav"><b>Choose a city:</b> </div>
 	<div class="key"></div>
 	<div class="content"></div>
 	<div class="source">source: <a href="https://en.wikipedia.org/wiki/Modal_share">Wikipedia</a> &mdash; 25 September 2015</div>
@@ -47,7 +59,37 @@
 <script type="text/javascript">
 d3.tsv('data/modal-share-data.tsv', function(data){
 	console.log(data);
+	d3.select('.nav').selectAll('a')
+		.data(data)
+			.enter()
+		.append('a')
+			.attr({
+				'href':function(d){return '#'+toID(d.City); },
+				'data-city':function(d){return d.City; },
+				'class':'city-link'
+			})
+			.on('click', function(d){ drawChart(d); return false; })
+			.text(function(d){return d.City+' ';})
 });
+
+function drawChart(data){
+	var width = 800, height = 200, margin={top:20, right:20, bottom:20, left:20};
+	var iconBar = d3.layout.iconArray()
+		.blockWidth(10)
+		.blockHeight(1)
+		.blockGap(1);
+
+	var categories = ['cycling','private motor vehicle','public transport','walking'];
+
+	d3.select('content').selectAll('svg')
+		.data([data])
+			.enter()
+		.append('svg')
+			.attr({
+				'width':width,
+				'height':height
+			})
+}
 
 function toID(s){
 	return s.replace(/\W/g,'-').toLowerCase();
