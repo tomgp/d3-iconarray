@@ -49,7 +49,7 @@
 </head>
 
 <body>
-<h3>Modal transport share with emoji</h3>
+<h3>Modal transport share</h3>
 	<div class="nav"><b>Choose a city:</b> </div>
 	<div class="key"></div>
 	<div class="content"></div>
@@ -57,8 +57,9 @@
 	<p></p>
 </body>
 <script type="text/javascript">
+var iconFile = 'icons/transport-emoji.svg'
+
 d3.tsv('data/modal-share-data.tsv', function(data){
-	console.log(data);
 	d3.select('.nav').selectAll('a')
 		.data(data)
 			.enter()
@@ -74,21 +75,73 @@ d3.tsv('data/modal-share-data.tsv', function(data){
 
 function drawChart(data){
 	var width = 800, height = 200, margin={top:20, right:20, bottom:20, left:20};
+	
+	var barHeight = 30;
 	var iconBar = d3.layout.iconArray()
-		.blockWidth(10)
-		.blockHeight(1)
-		.blockGap(1);
+		.blockWidth(10) //have a nice gap int he bar every 10 for ease of counting
+		.blockHeight(2)
+		.blockGap(1)
+		.verticalFirst(true);
+
+	var xScale = d3.scale.linear()
+		.range([0, width])
+		.domain([0, iconBar.maxDimensions(100).x]);
+
+	var iconScale = xScale(1)/100;
 
 	var categories = ['cycling','private motor vehicle','public transport','walking'];
 
-	d3.select('content').selectAll('svg')
+	d3.select('.content').selectAll('svg')
 		.data([data])
 			.enter()
 		.append('svg')
 			.attr({
+				'class':'chart',
 				'width':width,
 				'height':height
-			})
+			});
+
+	d3.select('svg.chart')
+		.selectAll('g.bar')
+		.data(categories)
+			.enter()
+		.append('g')
+			.attr({
+				'transform':function(d,i){
+					return 'translate(' + 0 + ',' + (i * barHeight) + ')';
+				},
+				'class':'bar'
+			});
+
+	d3.selectAll('g.bar')
+		.call(function(parent){
+			var join = parent.selectAll('g.icon')
+				.data(function(d){
+					var expanded = d3.range(0,data[d],1)
+									.map(function(){ return d; });
+					return iconBar(expanded); 
+				},function(e,i){ return 'd'+i; })
+			
+			join.enter()
+				.append('g')
+					.attr({
+						'class':'icon',
+						'transform':function(d){
+							return 'translate(' + xScale(d.x) + ',' + xScale(d.y) + ')';
+						}
+					})
+				.append('use')
+					.attr({
+						'xlink:href':function(d){
+							return iconFile + '#' + toID(d.data);
+						},
+						'transform':'scale('+iconScale+')'
+					});
+
+			join.exit().remove();
+		})
+
+	console.log('done')
 }
 
 function toID(s){

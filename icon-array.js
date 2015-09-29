@@ -1,6 +1,7 @@
 d3.layout.iconArray = function (){
 	var blockWidth = 10, blockHeight,
-		blockGap = 2; //if a block is filled make another block
+		blockGap = 2, //if a block is filled make another block
+		verticalFirst = false;
 
 	function layout(data){
 		if( !blockHeight ) blockHeight = blockWidth;
@@ -8,6 +9,14 @@ d3.layout.iconArray = function (){
 
 		return data.map(function(d,i){
 			var blockNum = Math.floor( i / blockSize );
+			console.log(blockNum);
+			if(verticalFirst){
+				return {
+					x: Math.floor( i/blockHeight ) + (blockGap * blockNum), // - blockWidth * blockNum,
+					y: i%blockHeight,// + (blockGap + blockHeight) * blockNum,
+					data: d
+				};
+			}
 			return {
 				x: i%blockWidth + (blockGap + blockWidth) * blockNum,
 				y: Math.floor( i/blockWidth ) - blockHeight * blockNum,
@@ -28,6 +37,12 @@ d3.layout.iconArray = function (){
 
 		dim.max = Math.max(dim.x, dim.y);
 		return dim;
+	}
+
+	layout.verticalFirst = function(b){
+		if(!b) return verticalFirst;
+		verticalFirst = b;
+		return layout;
 	}
 
 	layout.blockWidth = function(w){
