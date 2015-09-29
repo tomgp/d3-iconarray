@@ -129,7 +129,7 @@
 		.append('use')
 			.attr('xlink:href',function(d){
 				console.log(d.data.mode);
-				return iconGraphics[d.data.mode]+'#icon';
+				return iconFile[d.data.mode]+'#icon';
 			})
 			.attr('transform','scale(' + scaleFactor + ')');
 
@@ -152,7 +152,7 @@
 							})
 						.append('use')
 							.attr('xlink:href',function(d){
-								return iconGraphics[d.mode]+'#icon';
+								return iconFile[d.mode]+'#icon';
 							})
 							.attr('transform','scale(' + scaleFactor + ')');
 
