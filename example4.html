@@ -83,17 +83,20 @@ var iconFile = 'icons/transport-emoji.svg'
 
 d3.tsv('data/modal-share-data.tsv', function(data){
 	var categories = ['private motor vehicle','public transport','walking','cycling'];
-	d3.select('.nav').selectAll('a')
-		.data(data)
-			.enter()
-		.append('a')
-			.attr({
-				'href':function(d){ return '#'+toID(d.City); },
-				'data-city':function(d){ return d.City; },
-				'class':'city-link'
-			})
-			.on('click', function(d){ drawChart(d,categories); return false; })
-			.text(function(d){ return d.City + ' '; });
+
+	d3.select('.nav')
+		.append('select')
+			.on('change',function(){
+					var d = d3.select(this)
+						.select('option:checked')
+						.data()[0];
+					drawChart(d, categories);
+				})
+			.selectAll('option')
+			.data(data)
+				.enter()
+			.append('option')
+				.text(function(d){ return d.City; })
 
 	d3.select('.key')
 		.append('h2')
@@ -217,6 +220,8 @@ function toID(s){
 	return s.replace(/\W/g,'-').toLowerCase();
 }
 </script>
+
+
 <script type="text/javascript">
 	//icon array axis
 
@@ -227,7 +232,6 @@ function toID(s){
 			tickSize = [-10,10];
 
 		function axis(g){
-			console.log(g, this);
 			g.selectAll('tick')
 				.data(ticks)
 					.enter()
@@ -236,7 +240,6 @@ function toID(s){
 						'class':'tick',
 						'transform':function(d){
 							//if the tick is just before a gap, the subtract that gap
-							console.log('a,',layout.blockArea())
 							if(d%layout.blockArea() == 0){
 								var xPos = arrayScale( layout.position(d).x - layout.blockGap());
 							}else{

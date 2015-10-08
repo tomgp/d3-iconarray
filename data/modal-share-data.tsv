@@ -1,48 +1,1 @@
-Country	City	walking	cycling	public transport	private motor vehicle	year
-Australia	Adelaide	3	1	10	86	2006
-Australia	Brisbane	4	1	14	81	2006
-Australia	Melbourne	4	2	14	80	2012
-Australia	Perth	3	1	10	86	2006
-Australia	Sydney	5	1	21	74	2006
-Austria	Vienna	26	7	39	28	2014
-Belgium	Brussels	25	2.5	28	43	2010
-Canada	Toronto	7	2	34	56	2006
-China	Beijing	21	32	26	21	2005/2011
-China	Shanghai	27	20	33	20	2009/2011
-Colombia	Bogota	15	2	64	19	2008
-Czech Republic	Prague	23	1	43	33	2009
-France	Paris	61	3	27	9	2010
-Germany	Berlin	29	15	26	30	2012
-Germany	Hamburg	28	12	18	42	2008
-Germany	Munich	28	17	21	37	2011
-Hungary	Budapest	22	2	30	46	2004
-India	Delhi	21	12	48	19	2008/2011
-India	Mumbai	27	6	52	15	2008/2011
-Italy	Rome	7	0	24	68	2001
-Japan	Osaka	27	0	34	39	2000
-Japan	Tokyo	23	14	51	12	2008/2009
-New Zealand	Auckland	3	1	6	89	2009-2012
-Poland	Warsaw	5	1	60	34	2009
-Singapore	Singapore	22	1	44	33	2011
-South Korea	Daejeon	26	2	28	44	2012
-Spain	Barcelona	35	12	33	20	2012
-Spain	Madrid	36	0	34	30	2006
-Taiwan	Taipei	15	4	33	48	2009/2010
-United Kingdom	London	21	2	44	34	2011
-United States	Boston	14	2	35	45	2009
-United States	Chicago	6	1	27	61	2009
-United States	Dallas	2	0	4	89	2009
-United States	Houston	2	0	4	88	2009
-United States	Indianapolis	2	1	2	92	2009
-United States	Las Vegas	3	0	3	89	2009
-United States	Los Angeles	3	1	11	78	2009
-United States	New York City	10	1	55	29	2009
-United States	Philadelphia	9	2	25	60	2009
-United States	Phoenix	2	1	3	88	2009
-United States	Portland	6	6	12	70	2009
-United States	San Antonio	2	0	3	90	2009
-United States	San Diego	3	1	4	85	2009
-United States	San Francisco	10	3	32	46	2009
-United States	San Jose	2	1	3	89	2009
-United States	Seattle	8	3	20	63	2009
-United States	Washington, D.C.	11	2	37	43	2009
+Country	City	walking	cycling	public transport	private motor vehicle	yearAustralia	Adelaide	3	1	10	86	2006New Zealand	Auckland	3	1	6	89	2009-2012Spain	Barcelona	35	12	33	20	2012China	Beijing	21	32	26	21	2005/2011Germany	Berlin	29	15	26	30	2012Colombia	Bogota	15	2	64	19	2008United States	Boston	14	2	35	45	2009Australia	Brisbane	4	1	14	81	2006Belgium	Brussels	25	2.5	28	43	2010Hungary	Budapest	22	2	30	46	2004United States	Chicago	6	1	27	61	2009South Korea	Daejeon	26	2	28	44	2012United States	Dallas	2	0	4	89	2009India	Delhi	21	12	48	19	2008/2011Germany	Hamburg	28	12	18	42	2008United States	Houston	2	0	4	88	2009United States	Indianapolis	2	1	2	92	2009United States	Las Vegas	3	0	3	89	2009United Kingdom	London	21	2	44	34	2011United States	Los Angeles	3	1	11	78	2009Spain	Madrid	36	0	34	30	2006Australia	Melbourne	4	2	14	80	2012India	Mumbai	27	6	52	15	2008/2011Germany	Munich	28	17	21	37	2011United States	New York City	10	1	55	29	2009Japan	Osaka	27	0	34	39	2000France	Paris	61	3	27	9	2010Australia	Perth	3	1	10	86	2006United States	Philadelphia	9	2	25	60	2009United States	Phoenix	2	1	3	88	2009United States	Portland	6	6	12	70	2009Czech Republic	Prague	23	1	43	33	2009Italy	Rome	7	0	24	68	2001United States	San Antonio	2	0	3	90	2009United States	San Diego	3	1	4	85	2009United States	San Francisco	10	3	32	46	2009United States	San Jose	2	1	3	89	2009United States	Seattle	8	3	20	63	2009China	Shanghai	27	20	33	20	2009/2011Singapore	Singapore	22	1	44	33	2011Australia	Sydney	5	1	21	74	2006Taiwan	Taipei	15	4	33	48	2009/2010Japan	Tokyo	23	14	51	12	2008/2009Canada	Toronto	7	2	34	56	2006Austria	Vienna	26	7	39	28	2014Poland	Warsaw	5	1	60	34	2009United States	"Washington, D.C."	11	2	37	43	2009
