@@ -4,32 +4,22 @@
 
 	<script src="d3.v3.js" charset="utf-8"></script>
 	<script type="text/javascript" src="icon-array.js"></script>
-	
 	<style>
 
 	body{
 		font-family: sans-serif;
 	}
 
-	.key-label{
-		font-size: small;
-	}
-
-	td{
-		vertical-align:middle;
-	}
-
-	.key{
-		display:inline-block;
-	}
 
 	.content{
-		display:inline-block;
-		float:left;
+
 	}
+
 	.source{
+		font-style: italic;
 		color: #888;
 	}
+
 	.source a, 
 	.source a:visited{
 		color: #888;
@@ -45,13 +35,44 @@
 		color: #FFF;
 	}
 
+	.chart-title{
+		font-size: 30;
+		font-weight: 100;
+	}
+
+	h1{
+		padding: 0;
+		margin-top: 20;
+		margin-bottom: 10;
+	}
+	h2{
+		padding: 0;
+		margin-top: 10;
+		margin-bottom: 20;
+	}
+	.key-element{
+		margin-right: 30;
+		font-weight: 100;
+	}
+
+	.tick-label{
+		font-weight: 100;
+		fill: #888;
+		font-size: 12;
+	}
+	.tick-line{
+		stroke: #ddd;
+		stroke-width:1;
+		shape-rendering:crispEdges;
+	}
+
 	</style>
 </head>
 
 <body>
-<h3>Modal transport share</h3>
-	<div class="nav"><b>Choose a city:</b> </div>
+<h1>Modal transport share</h1>
 	<div class="key"></div>
+	<div class="nav"><b>Choose a city:</b> </div>
 	<div class="content"></div>
 	<div class="source">source: <a href="https://en.wikipedia.org/wiki/Modal_share">Wikipedia</a> &mdash; 25 September 2015</div>
 	<p></p>
@@ -59,59 +80,107 @@
 <script type="text/javascript">
 var iconFile = 'icons/transport-emoji.svg'
 
+
 d3.tsv('data/modal-share-data.tsv', function(data){
+	var categories = ['private motor vehicle','public transport','walking','cycling'];
 	d3.select('.nav').selectAll('a')
 		.data(data)
 			.enter()
 		.append('a')
 			.attr({
-				'href':function(d){return '#'+toID(d.City); },
-				'data-city':function(d){return d.City; },
+				'href':function(d){ return '#'+toID(d.City); },
+				'data-city':function(d){ return d.City; },
 				'class':'city-link'
 			})
-			.on('click', function(d){ drawChart(d); return false; })
-			.text(function(d){return d.City+' ';})
+			.on('click', function(d){ drawChart(d,categories); return false; })
+			.text(function(d){ return d.City + ' '; });
+
+	d3.select('.key')
+		.append('h2')
+			.selectAll('span')
+		.data(categories)
+			.enter()
+		.append('span')
+			.attr('class','key-element')
+			.text(function(d){
+				return d;
+			});
 });
 
-function drawChart(data){
-	var width = 800, height = 200, margin={top:20, right:20, bottom:20, left:20};
+function drawChart(data, categories){
 	
+	var width = 600, 
+		height = 700, 
+		margin = {
+			top:100, 
+			left:20, 
+			bottom:20, 
+			right:20
+		};
+	var gap = 0.5;
+	var barSpacing = 10;
 	var barHeight = 30;
 	var iconBar = d3.layout.iconArray()
-		.blockWidth(10) //have a nice gap int he bar every 10 for ease of counting
-		.blockHeight(2)
-		.blockGap(1)
+		.blockWidth(5) //have a nice gap in the bar every 25 icons for ease of counting
+		.blockHeight(5)
+		.blockGap(gap)
 		.verticalFirst(true);
 
-	var xScale = d3.scale.linear()
-		.range([0, width])
-		.domain([0, iconBar.maxDimensions(100).x]);
+	var barDimensions = iconBar.maxDimensions(100);
 
-	var iconScale = xScale(1)/100;
+	var arrayScale = d3.scale.linear()
+		.range( [0, width-(margin.left+margin.right)] )
+		.domain( [0, barDimensions.x] );
 
-	var categories = ['cycling','private motor vehicle','public transport','walking'];
+	var barScale = d3.scale.linear()
+		.range( [0, (arrayScale(barDimensions.y) + barSpacing)*categories.length] )
+		.domain( [0, categories.length ] );
 
-	d3.select('.content').selectAll('svg')
-		.data([data])
+	var iconScale = arrayScale(0.8)/100;
+
+	var axis = arrayAxis()
+		.arrayScale(arrayScale)
+		.layout(iconBar)
+		.tickSize([ -10, barScale.range()[1] ])
+		.ticks([25, 50, 75, 100]);
+
+	var svg = d3.select('.content').selectAll('svg')
+		.data([data], function(d){d.City})
 			.enter()
 		.append('svg')
 			.attr({
-				'class':'chart',
-				'width':width,
-				'height':height
+				'class': 'chart',
+				'width': width,
+				'height': barScale(categories.length)+margin.top+margin.bottom
+			})
+		.append('g')
+			.call(function(parent){
+				parent.attr('transform','translate('+margin.left+','+margin.top+')');
+				parent.append('text').attr({
+					'class':'chart-title',
+					dy:-barSpacing*4
+				});
 			});
 
-	d3.select('svg.chart')
-		.selectAll('g.bar')
+	
+
+	svg.selectAll('g.bar')
 		.data(categories)
 			.enter()
 		.append('g')
 			.attr({
 				'transform':function(d,i){
-					return 'translate(' + 0 + ',' + (i * barHeight) + ')';
+					return 'translate(' + 0 + ',' + barScale(i) + ')';
 				},
 				'class':'bar'
-			});
+			})
+		.each(function(d,i){
+			if(i==0){
+				d3.select(this)
+					.call(axis);
+			}
+		});
+		
 
 	d3.selectAll('g.bar')
 		.call(function(parent){
@@ -127,7 +196,7 @@ function drawChart(data){
 					.attr({
 						'class':'icon',
 						'transform':function(d){
-							return 'translate(' + xScale(d.x) + ',' + xScale(d.y) + ')';
+							return 'translate(' + arrayScale(d.x) + ',' + arrayScale(d.y) + ')';
 						}
 					})
 				.append('use')
@@ -141,11 +210,87 @@ function drawChart(data){
 			join.exit().remove();
 		})
 
-	console.log('done')
+	d3.select('.chart-title').html(data.City+' &mdash; '+data.Country);
 }
 
 function toID(s){
 	return s.replace(/\W/g,'-').toLowerCase();
 }
+</script>
+<script type="text/javascript">
+	//icon array axis
+
+	function arrayAxis(){
+		var layout,
+			arrayScale,
+			ticks,
+			tickSize = [-10,10];
+
+		function axis(g){
+			console.log(g, this);
+			g.selectAll('tick')
+				.data(ticks)
+					.enter()
+				.append('g')
+					.attr({
+						'class':'tick',
+						'transform':function(d){
+							//if the tick is just before a gap, the subtract that gap
+							console.log('a,',layout.blockArea())
+							if(d%layout.blockArea() == 0){
+								var xPos = arrayScale( layout.position(d).x - layout.blockGap());
+							}else{
+								xPos = arrayScale( layout.position(d).x );
+							}
+							return 'translate(' + Math.round(xPos) + ',0)';
+						}
+					})
+				.call(function(parent){
+					parent.append('text')
+						.attr({
+							'text-anchor':'end',
+							'class':'tick-label',
+							dx:-3
+						})
+						.text(function(d){
+							return d;
+						});
+
+					parent.append('line')
+						.attr({
+							'class':'tick-line',
+							x1:0,
+							y1:tickSize[0],
+							x2:0,
+							y2:tickSize[1]
+						})
+				})
+		}
+
+		axis.tickSize = function(e){
+			if(!e) return tickSize;
+			tickSize = e;
+			return axis;
+		}
+
+		axis.arrayScale = function(s){
+			if(!s) return arrayScale;
+			arrayScale = s;
+			return axis;
+		}
+
+		axis.layout = function(l){
+			if(!l) return  layout;
+			layout = l;
+			return axis;
+		}
+
+		axis.ticks = function(t){
+			if(!t) return  ticks;
+			ticks = t;
+			return axis;
+		}
+		return axis;
+	}
 </script>
 </html>

@@ -4,64 +4,68 @@ d3.layout.iconArray = function (){
 		verticalFirst = false;
 
 	function layout(data){
-		if( !blockHeight ) blockHeight = blockWidth;
-		var blockSize = blockWidth * blockHeight;
-
 		return data.map(function(d,i){
-			var blockNum = Math.floor( i / blockSize );
-			console.log(blockNum);
-			if(verticalFirst){
-				return {
-					x: Math.floor( i/blockHeight ) + (blockGap * blockNum), // - blockWidth * blockNum,
-					y: i%blockHeight,// + (blockGap + blockHeight) * blockNum,
-					data: d
-				};
-			}
-			return {
-				x: i%blockWidth + (blockGap + blockWidth) * blockNum,
-				y: Math.floor( i/blockWidth ) - blockHeight * blockNum,
-				data: d
-			};
+			var pos = position(i);
+			pos.data = d;
+			return pos
 		});
 	}
 
-	layout.maxDimensions = function(numItems){ //find out how big the layout will be for a given array size
-		if(!blockHeight) blockHeight = blockWidth;
+	function position(itemNum){
+		if( !blockHeight ) blockHeight = blockWidth;
 		var blockSize = blockWidth * blockHeight;
-		var blockNum = Math.ceil( numItems / blockSize );
-		if(blockNum == 0) blockNum = 1;
-		var dim = {
-			x: numItems%blockWidth + (blockGap + blockWidth) * blockNum,
-			y: Math.floor( numItems/blockWidth ) - blockHeight * blockNum
+		var blockNum = Math.floor( itemNum / blockSize );
+		if(verticalFirst){
+			return {
+				x: Math.floor( itemNum/blockHeight ) + (blockGap * blockNum), // - blockWidth * blockNum,
+				y: itemNum%blockHeight,// + (blockGap + blockHeight) * blockNum,
+			};
+		}
+		return {
+			x: itemNum%blockWidth + (blockGap + blockWidth) * blockNum,
+			y: Math.floor( itemNum/blockWidth ) - blockHeight * blockNum,
 		};
-
-		dim.max = Math.max(dim.x, dim.y);
-		return dim;
 	}
+
+	layout.position = function(itemNum){
+		return position(itemNum);
+	};
+
+	layout.maxDimensions = function(numItems){ //find out how big the layout will be for a given array size
+		var pos = position(numItems)
+		pos.x = Math.max(pos.x, blockWidth);
+		pos.y = Math.max(pos.y, blockWidth);
+		pos.max = Math.max(pos.x, pos.y);
+		return pos;
+	};
 
 	layout.verticalFirst = function(b){
 		if(!b) return verticalFirst;
 		verticalFirst = b;
 		return layout;
-	}
+	};
 
 	layout.blockWidth = function(w){
 		if(!w) return blockWidth;
 		blockWidth = w;
 		return layout;
-	}
+	};
 
 	layout.blockHeight = function(h){
 		if(!h) return blockHeight;
 		blockHeight = h;
 		return layout;
+	};
+
+	layout.blockArea = function(){
+		return blockHeight * blockWidth;
 	}
 
 	layout.blockGap = function(g){
 		if(!g) return blockGap;
 		blockGap = g;
 		return layout;
-	}
+	};
 
 	return layout;
 }
