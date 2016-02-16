@@ -1,0 +1,27 @@
+{
+  "name": "d3-foo",
+  "version": "0.0.1",
+  "description": "{DESCRIPTION}",
+  "keywords": [
+    "d3"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "build/d3-foo.js",
+  "jsnext:main": "index",
+  "homepage": "https://github.com/{USERNAME}/d3-foo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{USERNAME}/d3-foo.git"
+  },
+  "scripts": {
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -n d3_foo -o build/d3-foo.js -- build/bundle.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs build/d3-foo.js -c -m -o build/d3-foo.min.js && rm -f build/d3-foo.zip && zip -j build/d3-foo.zip -- LICENSE README.md build/d3-foo.js build/d3-foo.min.js"
+  },
+  "devDependencies": {
+    "faucet": "0.0",
+    "rollup": "0.25",
+    "tape": "4",
+    "uglify-js": "2"
+  }
+}

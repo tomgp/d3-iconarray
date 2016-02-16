@@ -1,17 +1,15 @@
-# D3 icon array 
-## Work in progress
-A script for laying out grids of icons/ dots/ whatever/ in d3
-see example html files for usage
+# d3-foo
 
+YOUR DESCRIPTION HERE. Replace all instances of `foo` in this file with the name of your new plugin.
 
---
-Legal stuff
-Icon rights:
-Public domain: male.svg, female.svg 
-[CC BY 3.0 US](http://creativecommons.org/licenses/by/3.0/us/):
-[Car by Arthur Shlain](https://thenounproject.com/term/car/157094/)
-[Truck by Arthur Shlain](https://thenounproject.com/term/truck/157093/) 
-[Bus by Arthur Shlain](https://thenounproject.com/term/bus/157092/)
-[Bicycle by Arthur Shlain](https://thenounproject.com/term/bicycle/157080/)
-Pedestrian derived from [Crosswalk by Arthur Shlain](https://thenounproject.com/term/crosswalk/157118/)
-[Railcar by Arthur Shlain](https://thenounproject.com/term/railcar/157096/)
+## Installing
+
+If you use NPM, `npm install d3-foo`. Otherwise, download the [latest release](https://github.com/d3/d3-foo/releases/latest).
+
+## API Reference
+
+YOUR API DOCUMENTATION HERE. Use bold for symbols (such as constructor and method names) and italics for instances. See the other D3 modules for examples.
+
+<a href="#foo" name="foo">#</a> <b>foo</b>()
+
+Computes the answer to the ultimate question of life, the universe, and everything.
