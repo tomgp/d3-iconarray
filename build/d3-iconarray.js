@@ -42,7 +42,9 @@
 
 		function setDimensions(l){
 			//neither width or height is defined
+			console.log('set dim');
 			if(isNaN(width) && isNaN(height)){
+				console.log('no width or height');
 				if(widthFirst){ 
 					width = Math.ceil( Math.sqrt(l) );
 					height = Math.ceil( l / width );
@@ -68,7 +70,7 @@
 		};
 
 		layout.height = function(x){
-			if(x === undefined) return width;
+			if(x === undefined) return height;
 			width = x;
 			return layout;
 		};
