@@ -11,7 +11,7 @@
 
 		function layout(data){
 			//work our missing height, width stuff
-
+			console.log('new stuff');
 			return data.map(function(d,i){
 				return '';
 			});

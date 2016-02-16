@@ -5,9 +5,12 @@ export default function() {
 
 	function layout(data){
 		//work our missing height, width stuff
-
+		console.log('new stuff');
 		return data.map(function(d,i){
-			return '';
+			return {
+				data:d,
+				position:position(i, width, height, widthFirst)
+			};
 		});
 	}
 
@@ -31,3 +34,7 @@ export default function() {
 
 	return layout;
 };
+
+function position(item, width, height, widthFirst){
+	return i;
+}
