@@ -7,9 +7,22 @@ tape("check empty layout", function(test) {
 	test.end();
 });
 
-tape("check 100 layout", function(test) {
-	var myArray = iconArray();
-	test.equal( myArray(getTestData(100)).length, 100 );
+tape("check 10x10 layout", function(test) { // a nice neat 10x10
+	var myArray = iconArray()
+		.width(10)
+		.height(10);
+
+	var data = myArray(getTestData(100));
+	
+	test.equal( data.length, 100 );
+	test.equal( data[0].position.x, 0);
+	test.equal( data[0].position.y, 0);
+	test.equal( data[10].position.x, 0);
+	test.equal( data[10].position.y, 1);
+	test.equal( myArray.position(25).x, 5);
+	test.equal( myArray.position(25).y, 2);
+	test.equal( myArray.width(), 10);
+	test.equal( myArray.height(), 10);
 	test.end();
 });
 
