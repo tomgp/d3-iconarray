@@ -2,10 +2,11 @@ export default function() {
 	var width = undefined;
 	var height = undefined;
 	var widthFirst = true;
+	var maxDimension = undefined;
 
 	function layout(data){
 		//work our missing height, width stuff
-		console.log('new stuff');
+
 		setDimensions(data.length);
 
 		return data.map(function(d,i){
@@ -36,7 +37,6 @@ export default function() {
 
 	function setDimensions(l){
 		//neither width or height is defined
-		console.log('set dim');
 		if(isNaN(width) && isNaN(height)){
 			console.log('no width or height');
 			if(widthFirst){ 
@@ -51,6 +51,17 @@ export default function() {
 		}else if(isNaN(height)){ //height undefined
 			height = Math.ceil( l / width );
 		}
+	}
+
+	layout.maxDimension = function(x){
+		var itemPosition = position(x); 
+		if(widthFirst){
+			var x = Math.max(itemPosition.x, width);
+			return Math.max(x, itemPosition.y);
+		}
+		var y = Math.max(itemPosition.y, height);
+		return Math.max(y, itemPosition.x);
+
 	}
 
 	layout.position = function(x){

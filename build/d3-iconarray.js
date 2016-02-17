@@ -4,14 +4,15 @@
 	(factory((global.d3_iconarray = global.d3_iconarray || {})));
 }(this, function (exports) { 'use strict';
 
-	function iconArray() {
+	function iconArrayLayout() {
 		var width = undefined;
 		var height = undefined;
 		var widthFirst = true;
+		var maxDimension = undefined;
 
 		function layout(data){
 			//work our missing height, width stuff
-			console.log('new stuff');
+
 			setDimensions(data.length);
 
 			return data.map(function(d,i){
@@ -42,7 +43,6 @@
 
 		function setDimensions(l){
 			//neither width or height is defined
-			console.log('set dim');
 			if(isNaN(width) && isNaN(height)){
 				console.log('no width or height');
 				if(widthFirst){ 
@@ -57,6 +57,17 @@
 			}else if(isNaN(height)){ //height undefined
 				height = Math.ceil( l / width );
 			}
+		}
+
+		layout.maxDimension = function(x){
+			var itemPosition = position(x); 
+			if(widthFirst){
+				var x = Math.max(itemPosition.x, width);
+				return Math.max(x, itemPosition.y);
+			}
+			var y = Math.max(itemPosition.y, height);
+			return Math.max(y, itemPosition.x);
+
 		}
 
 		layout.position = function(x){
@@ -84,9 +95,46 @@
 		return layout;
 	};
 
+	function iconArrayScale(){
+
+		var domain = [0,100];
+		var range = [0,100];
+		var gapInterval = 10;
+
+		function scale(domainValue){
+			var rangeValue = 20;
+			return rangeValue;
+		}
+
+		scale.inverse = function(rangeValue){
+
+		};
+
+		scale.gapInterval = function(x){
+			if(!x) return gapInterval;
+			gapInterval = x;
+			return scale;
+		};
+
+		scale.domain = function(array){
+			if(!array) return domain;
+			domain = array;
+			return scale;
+		};
+
+		scale.range = function(array){
+			if(!array) return range;
+			range = array;
+			return scale;
+		};
+
+		return scale; 
+	}
+
 	var version = "0.0.1";
 
 	exports.version = version;
-	exports.iconArray = iconArray;
+	exports.layout = iconArrayLayout;
+	exports.scale = iconArrayScale;
 
 }));

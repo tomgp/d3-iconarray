@@ -1,14 +1,20 @@
 var tape = require("tape"),
-    iconArray = require("../").iconArray;
+    iconArray = require("../");
 
 tape("check empty layout", function(test) {
-	var myArray = iconArray();
+	var myArray = iconArray.layout();
 	test.equal( myArray([]).length, 0 );
 	test.end();
 });
 
+tape("check empty scale", function(test){
+	var myScale = iconArray.scale();
+	test.equal( myScale(20), 20 );
+	test.end();
+});
+
 tape("check 10x10 layout", function(test) { // a nice neat 10x10
-	var myArray = iconArray()
+	var myArray = iconArray.layout()
 		.width(10)
 		.height(10);
 
@@ -28,7 +34,7 @@ tape("check 10x10 layout", function(test) { // a nice neat 10x10
 });
 
 tape("check 10x? layout", function(test){
-	var myArray = iconArray()
+	var myArray = iconArray.layout()
 		.width(10);
 
 	var layout = myArray(getTestData(900));

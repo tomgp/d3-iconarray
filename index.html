@@ -2,16 +2,49 @@
 <html>
 <head>
 	<title></title>
+	<script src="//d3js.org/d3.v4.0.0-alpha.18.min.js" charset="utf-8"></script>
+
 	<script type="text/javascript" src="build/d3-iconarray.js"></script>
 </head>
 <body>
-<div class="icon-array-example">
+<div id="simple-example">
 	
 </div>
 </body>
 <script type="text/javascript">
-	
-console.log( d3_iconarray.iconArray() ); // 42	
+var layout = d3_iconarray.layout()
+							.width(10)
+							.widthFirst(true);
+
+
+var data = d3.range(0, 100, 1);
+
+var grid = layout(data);
+
+var width = 500, 
+	height = 500, 
+	margin = {top:10, bottom:10, left:10, right:10 };
+
+var arrayScale = d3.scaleLinear()
+	.domain([ 0, layout.maxDimension(data.length) ])
+	.range([0, width-(margin.left+margin.right)]);
+
+var svg = d3.select('#simple-example')
+		.append('svg')
+			.attr('width',width)
+			.attr('height',height)
+		.append('g')
+			.attr('transform','translate('+margin.left+','+margin.top+')');
+
+svg.selectAll('circle')
+	.data(grid)
+		.enter()
+	.append('circle')
+		.attr('cx',function(d){ return arrayScale(d.position.x) })
+		.attr('cy',function(d){ return arrayScale(d.position.y) })
+		.attr('r', 3);
+
+
 </script>
 
 </html>
