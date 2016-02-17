@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.d3_iconarray = global.d3_iconarray || {})));
-}(this, function (exports) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-scale')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'd3-scale'], factory) :
+	(factory((global.d3_iconarray = global.d3_iconarray || {}),global.d3));
+}(this, function (exports,d3) { 'use strict';
 
 	function iconArrayLayout() {
 		var width = undefined;
@@ -100,34 +100,59 @@
 		var domain = [0,100];
 		var range = [0,100];
 		var gapInterval = 10;
+		var gapSize = 0; //default no change
+		var notionalScale = d3.scaleLinear()
+								.domain(domain)
+								.range(range);
 
 		function scale(domainValue){
 			var rangeValue = 20;
-			return rangeValue;
+			var adjustedDomainValue = domainValue + Math.floor(domainValue/gapInterval)*gapSize;
+			//console.log(notionalScale.domain());
+			return rangeValue = notionalScale(adjustedDomainValue);		
 		}
 
-		scale.inverse = function(rangeValue){
+		function rescale(){
+			//calculate an adjusted domain
+			var domainLength = (domain[1] - domain[0]) * gapSize;
+			var gaps = Math.ceil( domainLength/ gapInterval );
+			var adjustedDomain = [ domain[0], domain[1] + gaps ];
 
-		};
+			//calculate an adjusted range
+
+			notionalScale.domain(adjustedDomain)
+					.range(range);
+		}
 
 		scale.gapInterval = function(x){
 			if(!x) return gapInterval;
 			gapInterval = x;
+			rescale();
 			return scale;
 		};
+
+		scale.gapSize = function(x){
+			if(isNaN(x)) return gapSize;
+			gapSize = x;
+			rescale();
+			return scale;
+		}
 
 		scale.domain = function(array){
 			if(!array) return domain;
 			domain = array;
+			rescale();
 			return scale;
 		};
 
 		scale.range = function(array){
 			if(!array) return range;
 			range = array;
+			rescale();
 			return scale;
 		};
 
+		rescale();
 		return scale; 
 	}
 

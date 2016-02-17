@@ -9,7 +9,7 @@ tape("check empty layout", function(test) {
 
 tape("check empty scale", function(test){
 	var myScale = iconArray.scale();
-	test.equal( myScale(20), 20 );
+	test.equal( myScale(20), 21 );
 	test.end();
 });
 

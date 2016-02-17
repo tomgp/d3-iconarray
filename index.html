@@ -13,11 +13,11 @@
 </body>
 <script type="text/javascript">
 var layout = d3_iconarray.layout()
-							.width(10)
+							//.width(10)
 							.widthFirst(true);
 
 
-var data = d3.range(0, 100, 1);
+var data = d3.range(0, 2500, 1);
 
 var grid = layout(data);
 
@@ -25,9 +25,10 @@ var width = 500,
 	height = 500, 
 	margin = {top:10, bottom:10, left:10, right:10 };
 
-var arrayScale = d3.scaleLinear()
+var arrayScale = d3_iconarray.scale()
 	.domain([ 0, layout.maxDimension(data.length) ])
-	.range([0, width-(margin.left+margin.right)]);
+	.range([0, width-(margin.left+margin.right)])
+	.gapSize(1);
 
 var svg = d3.select('#simple-example')
 		.append('svg')
@@ -42,7 +43,7 @@ svg.selectAll('circle')
 	.append('circle')
 		.attr('cx',function(d){ return arrayScale(d.position.x) })
 		.attr('cy',function(d){ return arrayScale(d.position.y) })
-		.attr('r', 3);
+		.attr('r', 2);
 
 
 </script>
