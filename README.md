@@ -1,6 +1,6 @@
 # d3-iconarray
 
-A D3 plugin tarveting V4 helping you to draw an array of icons.
+A D3 plugin targeting V4 helping you to draw an array of icons.
 
 <a href="#why">Why?</a>
 
