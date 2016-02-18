@@ -3,15 +3,16 @@
   "version": "0.0.1",
   "description": "Layout a grid of icons",
   "keywords": [
-    "d3"
+    "d3","visualization","iconarray","layout"
   ],
+  "author": "Tom G Pearson",
   "license": "BSD-3-Clause",
   "main": "build/d3-iconarray.js",
   "jsnext:main": "index",
-  "homepage": "https://github.com/tomgp/d3-iconarray",
+  "homepage": "https://www.github.com/tomgp/d3-iconarray",
   "repository": {
     "type": "git",
-    "url": "https://github.com/{USERNAME}/d3-iconarray.git"
+    "url": "https://www.github.com/tomgp/d3-iconarray.git"
   },
   "scripts": {
     "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -n d3_iconarray -o build/d3-iconarray.js -- build/bundle.js",
