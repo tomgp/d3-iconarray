@@ -6,12 +6,7 @@ tape("check empty layout", function(test) {
 	test.equal( myArray([]).length, 0 );
 	test.end();
 });
-
-tape("check empty scale", function(test){
-	var myScale = iconArray.scale();
-	test.equal( myScale(20), 21 );
-	test.end();
-});
+//TODO check default layout i.e. no width height specified
 
 tape("check 10x10 layout", function(test) { // a nice neat 10x10
 	var myArray = iconArray.layout()
@@ -46,6 +41,22 @@ tape("check 10x? layout", function(test){
 	test.end();
 });
 
+tape("check layout max dimension", function(test){
+	var myArray = iconArray.layout()
+		.width(10);
+
+	test.equal( myArray.maxDimension(10), 10 );
+
+	test.end();
+});
+
+tape("check empty scale", function(test){
+	var myScale = iconArray.scale();
+	test.equal( myScale(20), 20 );
+	test.end();
+});
+
+//TODO more scale tests
 
 function getTestData(n){
 	var a = [];
