@@ -8,7 +8,7 @@ There are two parts to this plugin. First a <a href="#layout">layout</a> which w
 
 ## Installing
 
-If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest release](https://github.com/tomgp/d3-icon-array/releases/latest).
+If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest release](https://github.com/tomgp/d3-iconarray/releases/latest).
 
 ## API Reference
 
