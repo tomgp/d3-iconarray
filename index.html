@@ -18,8 +18,6 @@ var data = d3.range(0, 2500, 1);
 
 var grid = layout(data);
 
-console.log(layout.position(7))
-
 var width = 500, 
 	height = 500, 
 	margin = {top:40, bottom:10, left:40, right:10 };
@@ -40,8 +38,8 @@ svg.selectAll('circle')
 	.data(grid)
 		.enter()
 	.append('circle')
-		.attr('cx',function(d){ return arrayScale(d.position.x) })
-		.attr('cy',function(d){ return arrayScale(d.position.y) })
+		.attr('cx', function(d){ return arrayScale(d.position.x) })
+		.attr('cy', function(d){ return arrayScale(d.position.y) })
 		.attr('r', 2);
 
 
