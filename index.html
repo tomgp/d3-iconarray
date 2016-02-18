@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="//d3js.org/d3.v4.0.0-alpha.18.min.js" charset="utf-8"></script>
+
+	<script type="text/javascript" src="build/d3-iconarray.js"></script>
+</head>
+<body>
+<div id="simple-example">
+	
+</div>
+</body>
+<script type="text/javascript">
+var layout = d3_iconarray.layout();
+
+var data = d3.range(0, 2500, 1);
+
+var grid = layout(data);
+
+var width = 500, 
+	height = 500, 
+	margin = {top:40, bottom:10, left:40, right:10 };
+
+var arrayScale = d3_iconarray.scale()
+	.domain([ 0, layout.maxDimension(data.length) ])
+	.range([0, width-(margin.left+margin.right)])
+	.gapSize(1);
+
+var svg = d3.select('#simple-example')
+		.append('svg')
+			.attr('width',width)
+			.attr('height',height)
+		.append('g')
+			.attr('transform','translate('+margin.left+','+margin.top+')');
+
+svg.selectAll('circle')
+	.data(grid)
+		.enter()
+	.append('circle')
+		.attr('cx', function(d){ return arrayScale(d.position.x) })
+		.attr('cy', function(d){ return arrayScale(d.position.y) })
+		.attr('r', 2);
+
+
+</script>
+
+</html>

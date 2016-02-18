@@ -1,0 +1,28 @@
+{
+  "name": "d3-iconarray",
+  "version": "0.0.1",
+  "description": "Layout a grid of icons",
+  "keywords": [
+    "d3","visualization","iconarray","layout"
+  ],
+  "author": "Tom G Pearson",
+  "license": "BSD-3-Clause",
+  "main": "build/d3-iconarray.js",
+  "jsnext:main": "index",
+  "homepage": "https://www.github.com/tomgp/d3-iconarray",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/tomgp/d3-iconarray.git"
+  },
+  "scripts": {
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -n d3_iconarray -o build/d3-iconarray.js -- build/bundle.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs build/d3-iconarray.js -c -m -o build/d3-iconarray.min.js && rm -f build/d3-iconarray.zip && zip -j build/d3-iconarray.zip -- LICENSE README.md build/d3-iconarray.js build/d3-iconarray.min.js"
+  },
+  "devDependencies": {
+    "faucet": "0.0",
+    "rollup": "0.25",
+    "tape": "4",
+    "uglify-js": "2"
+  }
+}
