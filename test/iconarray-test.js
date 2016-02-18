@@ -41,14 +41,6 @@ tape("check 10x? layout", function(test){
 	test.end();
 });
 
-tape("check layout max dimension", function(test){
-	var myArray = iconArray.layout()
-		.width(10);
-
-	test.equal( myArray.maxDimension(10), 10 );
-
-	test.end();
-});
 
 tape("check empty scale", function(test){
 	var myScale = iconArray.scale();
