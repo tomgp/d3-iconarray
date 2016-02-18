@@ -156,7 +156,7 @@
 		return scale; 
 	}
 
-	var version = "0.0.1";
+	var version = "0.0.2";
 
 	exports.version = version;
 	exports.layout = iconArrayLayout;

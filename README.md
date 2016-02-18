@@ -10,6 +10,11 @@ There are two parts to this plugin. First a <a href="#layout">layout</a> which w
 
 If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest release](https://github.com/tomgp/d3-iconarray/releases/latest).
 
+## Examples
+
+ * <a href="http://bl.ocks.org/tomgp/47d151732913c6d1f74e">Versy simple example using both layout and scale features</a>
+ 
+
 ## API Reference
 
 ### Layout
