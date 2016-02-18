@@ -12,7 +12,7 @@ If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest rele
 
 ## Examples
 
- * <a href="http://bl.ocks.org/tomgp/47d151732913c6d1f74e">Versy simple example using both layout and scale features</a>
+ * <a href="http://bl.ocks.org/tomgp/47d151732913c6d1f74e">A minimal example using both layout and scale features</a>
  
 
 ## API Reference
