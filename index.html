@@ -12,10 +12,10 @@
 </div>
 </body>
 <script type="text/javascript">
-var layout = d3_iconarray.layout();
+var layout = d3_iconarray.layout().height(3);
 
 var data = d3.range(0, 2500, 1);
-data = [1,2,3,4];
+data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 var grid = layout(data);
 console.log(JSON.stringify(grid))
 var width = 500, 
@@ -37,9 +37,10 @@ var svg = d3.select('#simple-example')
 svg.selectAll('circle')
 	.data(grid)
 		.enter()
-	.append('circle')
-		.attr('cx',function(d){ return arrayScale(d.position.x) })
-		.attr('cy',function(d){ return arrayScale(d.position.y) })
+	.append('text')
+		.text(function(d){return d.data;})
+		.attr('x',function(d){ return arrayScale(d.position.x) })
+		.attr('y',function(d){ return arrayScale(d.position.y) })
 		.attr('r', 10);
 
 

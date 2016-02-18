@@ -82,7 +82,7 @@
 
 		layout.height = function(x){
 			if(x === undefined) return height;
-			width = x;
+			height = x;
 			return layout;
 		};
 
