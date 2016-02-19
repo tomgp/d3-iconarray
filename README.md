@@ -13,8 +13,10 @@ If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest rele
 ## Examples
 
  * <a href="http://bl.ocks.org/tomgp/47d151732913c6d1f74e">A minimal example using both layout and scale features</a>
- * <a href="http://bl.ocks.org/tomgp/8c11fd6d5c533ce6d31c">An example of using the plugin to make a hemicycle for election results</a>
- 
+ * <a href="http://bl.ocks.org/tomgp/8c11fd6d5c533ce6d31c">Using the plugin to make a hemicycle for election results</a>
+ * <a href="http://bl.ocks.org/tomgp/6fb9b8c93f86b24d6828">Recreating a graphics from Scientific American</a>
+
+![examples](images/examples.png)
 
 ## API Reference
 
