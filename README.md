@@ -1,6 +1,8 @@
 # d3-iconarray
 
-A D3 plugin targeting V4 helping you to draw an array of icons.
+A D3 plugin targeting V4* helping you to draw an array of icons.
+
+* mostly `d3.scaleLinear` is used instead of `d3.scale.linear` if you want to use this with an earlier version assigning the latter to the former should, I think, work fine.
 
 <a href="#why">Why?</a>
 
@@ -14,7 +16,8 @@ If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest rele
 
  * <a href="http://bl.ocks.org/tomgp/47d151732913c6d1f74e">A minimal example using both layout and scale features</a>
  * <a href="http://bl.ocks.org/tomgp/8c11fd6d5c533ce6d31c">Using the plugin to make a hemicycle for election results</a>
- * <a href="http://bl.ocks.org/tomgp/6fb9b8c93f86b24d6828">Recreating a graphics from Scientific American</a>
+ * <a href="http://bl.ocks.org/tomgp/6fb9b8c93f86b24d6828">Recreating a <abbr title="Group B strep">GBS</abbr> risk graphic from Scientific American</a>
+ * <a href="http://bl.ocks.org/tomgp/f891cc72ecb5d6015a5d">Setting the scale's gapSize and gapInterval properties</a>
 
 ![examples](images/examples.png)
 
@@ -136,15 +139,39 @@ You can use any kind of scale to draw you grid to the screen. The scale provided
 
 <a href="#scale" name="scale">#</a> d3_iconarray<b>.scale</b>()
 
+Creates a scale function just like good ol' <a href="https://github.com/d3/d3-scale#linear-scales">d3.scaleLinear()</a> etc.
+
 <a href="#_scale" name="_scale">#</a> <b>scale</b>(x)
+
+Given a value x in the input domain, returns the corresponding value in the output range.
 
 <a href="#domain" name="domain">#</a> scale<b>.domain</b>([numbers])
 
+Set the input domain, an array of 2 numbers.
+
+If no arguments are provided this returns the current value.
+
 <a href="#range" name="range">#</a> scale<b>.range</b>([numbers])
+
+Set the output range, an array of 2 numbers.
+
+If no arguments are provided this returns the current value.
 
 <a href="#gapInterval" name="gapInterval">#</a> scale<b>.gapInterval</b>(x)
 
+This function accepts a number which sets at what interval a gaps appear in the output range. i.e. if _x_ is 10 there will be an extra gap after every ten items in the output range.
+
+If no arguments are provided this returns the current value. 
+
+<a href="http://bl.ocks.org/tomgp/f891cc72ecb5d6015a5d">see this example</a>
+
 <a href="#gapSize" name="gapSize">#</a> scale<b>.gapSize</b>(x)
+
+This sets how big the gaps in the output range will be relative to the normal spacing. So if the normal spacing between two whole numbers is 10px and the gap size is set to 1.5 the extra wide space will be 15px.
+
+If no arguments are provided this returns the current value.
+
+<a href="http://bl.ocks.org/tomgp/f891cc72ecb5d6015a5d">see this example</a>
 
 ## Why?
 <a href="#why" name="why">#</a> 
