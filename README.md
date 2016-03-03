@@ -1,5 +1,7 @@
 # d3-iconarray
 
+![examples](images/examples.png)
+
 A D3 plugin targeting V4* helping you to draw an array of icons.
 
 * mostly `d3.scaleLinear` is used instead of `d3.scale.linear` if you want to use this with an earlier version assigning the latter to the former should, I think, work fine.
@@ -18,8 +20,8 @@ If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest rele
  * <a href="http://bl.ocks.org/tomgp/8c11fd6d5c533ce6d31c">Using the plugin to make a hemicycle for election results</a>
  * <a href="http://bl.ocks.org/tomgp/6fb9b8c93f86b24d6828">Recreating a <abbr title="Group B strep">GBS</abbr> risk graphic from Scientific American</a>
  * <a href="http://bl.ocks.org/tomgp/f891cc72ecb5d6015a5d">Setting the scale's gapSize and gapInterval properties</a>
-
-![examples](images/examples.png)
+ * <a href="http://bl.ocks.org/tomgp/59b5d482551ca14a4063">US Senate battlegrounds</a>
+ * <a href="http://bl.ocks.org/tomgp/a2c34418f2341f078624">when to use the widthFirst switch (UK election results)</a>
 
 ## API Reference
 
