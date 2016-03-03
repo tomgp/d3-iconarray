@@ -2,9 +2,7 @@
 
 ![examples](images/examples.png)
 
-A D3 plugin targeting V4* helping you to draw an array of icons.
-
-* mostly `d3.scaleLinear` is used instead of `d3.scale.linear` if you want to use this with an earlier version assigning the latter to the former should, I think, work fine.
+A D3 plugin targeting V4 helping you to draw an array of icons.
 
 <a href="#why">Why?</a>
 
