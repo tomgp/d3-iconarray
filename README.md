@@ -57,8 +57,6 @@ You can use the resulting grid to plot icons, the data points will be arranged l
 
 ![layout 1](images/layout1.png)
 
-TODO: block
-
 <a href="#widthFirst" name="widthFirst">#</a> layout<b>.widthFirst</b>([boolean])
 
 This function sets the order in which points are arranged in the grid. if widthFirst is set to true rows will be filled before starting the next, if it's false columns in the layout will be filled first. if no argument is provided it returns the current value.
@@ -79,6 +77,8 @@ with ` .widthFirst(false)` they'll be arranged like this
 
 ![layout 3](images/layout3.png)
 
+<a href="http://bl.ocks.org/tomgp/a2c34418f2341f078624">when to use the widthFirst switch (UK election results)</a>
+
 <a href="#width" name="width">#</a> layout<b>.width</b>([integer])
 
 the width function defines the maximum number of elements the grid will have in a given row. if no argument is provided it returns the current value.
@@ -92,8 +92,6 @@ var grid = layout([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 results in a grid like
 
 ![layout width restriction](images/layoutwidth.png)
-
-TODO: block
 
 <a href="#height" name="height">#</a> layout<b>.height</b>([integer])
 
@@ -129,7 +127,6 @@ var p = layout.position(7);
 
 A bit like <a href="#position">position</a> but given a number will return the maximum extent of the lyout if it were to have that many elements. THis is useful for setting the domain of scales.
 
-TODO: Block
 
 ### Scale
 
