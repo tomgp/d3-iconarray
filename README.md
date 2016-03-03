@@ -130,7 +130,7 @@ A bit like <a href="#position">position</a> but given a number will return the m
 
 ### Scale
 
-You can use any kind of scale to draw you grid to the screen. The scale provided by the plugin can let you add breaks to your icon array to improve legibility e.g. here's a 2500 element array grouped in to blocks of 100.
+You can use any kind of scale to draw your grid to the screen. The scale provided by the plugin can let you add breaks to your icon array to improve legibility e.g. here's a 2500 element array grouped in to blocks of 100.
 
 ![blocks of 100](images/scaleexample.png)
 
