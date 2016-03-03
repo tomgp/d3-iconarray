@@ -20,6 +20,7 @@ If you use NPM, `npm install d3-iconarray`. Otherwise, download the [latest rele
  * <a href="http://bl.ocks.org/tomgp/f891cc72ecb5d6015a5d">Setting the scale's gapSize and gapInterval properties</a>
  * <a href="http://bl.ocks.org/tomgp/59b5d482551ca14a4063">US Senate battlegrounds</a>
  * <a href="http://bl.ocks.org/tomgp/a2c34418f2341f078624">when to use the widthFirst switch (UK election results)</a>
+ * <a href="http://bl.ocks.org/tomgp/eb4079086278ae34844a">Modal transport share with emojis</a>
 
 ## API Reference
 
