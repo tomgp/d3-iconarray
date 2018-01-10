@@ -1,6 +1,6 @@
 {
   "name": "d3-iconarray",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Layout a grid of icons",
   "keywords": [
     "d3","visualization","iconarray","layout"
@@ -23,6 +23,6 @@
     "faucet": "0.0",
     "rollup": "0.25",
     "tape": "4",
-    "uglify-js": "2"
+    "uglify-js": "2.6"
   }
 }
