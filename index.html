@@ -2,11 +2,16 @@
 <html>
 <head>
 	<title></title>
-	<script src="//d3js.org/d3.v4.0.0-alpha.18.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
 
 	<script type="text/javascript" src="build/d3-iconarray.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://www.toffeemilkshake.co.uk/words/assets/style.css">
 </head>
 <body>
+<h1>D3 icon array</h1>
+<h2><a href="https://www.toffeemilkshake.co.uk/">Tom Pearson</a> Mar 2016</h2>
+<p>A D3 plugin helping you to draw an array of icons. Works fine with v4 or v5</p>
+<p><a href="https://github.com/tomgp/d3-iconarray/blob/master/README.md">Check out the readme file</a> for usage examples, API docs, and more information on the rationale behind using icon arrays.</p>
 <div id="simple-example">
 	
 </div>
@@ -33,14 +38,20 @@ var svg = d3.select('#simple-example')
 			.attr('height',height)
 		.append('g')
 			.attr('transform','translate('+margin.left+','+margin.top+')');
-
+const threshold = Math.random()*(2500);
 svg.selectAll('circle')
 	.data(grid)
 		.enter()
 	.append('circle')
 		.attr('cx', function(d){ return arrayScale(d.position.x) })
 		.attr('cy', function(d){ return arrayScale(d.position.y) })
-		.attr('r', 2);
+		.attr('r', 2)
+		.attr('fill',(d,i)=>{
+			if(i>threshold){
+				return '#0028ff';
+			}
+			return '#ff2800';
+		});
 
 
 </script>
