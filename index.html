@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>D3 icon array</title>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
-
+	<meta name="description" content="A D3 plugin helping you to draw an array of icons.">"
 	<script type="text/javascript" src="build/d3-iconarray.js"></script>
-	<link rel="stylesheet" type="text/css" href="/words/assets/style.css">
+	<link rel="stylesheet" href="https://www.toffeemilkshake.co.uk/css/home.css"> 
 </head>
 <body>
+<article>
 <h1>D3 icon array</h1>
-<h2><a href="https://www.toffeemilkshake.co.uk/">Tom Pearson</a> Mar 2016</h2>
-<p>A D3 plugin helping you to draw an array of icons. Works fine with v4 or v5</p>
+<p><a href="https://www.toffeemilkshake.co.uk/">Tom Pearson</a> Mar 2016</p>
+<p>A D3 plugin helping you to draw an array of icons. Works fine with v4 or v5 (possibly later?)</p>
 <p><a href="https://github.com/tomgp/d3-iconarray/blob/master/README.md">Check out the readme file</a> for usage examples, API docs, and more information on the rationale behind using icon arrays.</p>
 <div id="simple-example">
 	
 </div>
+</article>
 </body>
 <script type="text/javascript">
 var layout = d3_iconarray.layout();
@@ -48,7 +50,7 @@ svg.selectAll('circle')
 		.attr('r', 2)
 		.attr('fill',(d,i)=>{
 			if(i>threshold){
-				return '#0028ff';
+				return '#000';
 			}
 			return '#ff2800';
 		});
